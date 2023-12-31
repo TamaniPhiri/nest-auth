@@ -9,7 +9,8 @@ export class MailerService {
       port: 587,
       secure: true,
       auth: {
-        
+        user: 'tamanigabriel0@gmail.com',
+        pass: process.env.GOOGLE_MAIL_PASS,
       },
     });
   }
