@@ -10,7 +10,7 @@ export class MailerService {
       secure: true,
       auth: {
         user: 'tamanigabriel0@gmail.com',
-        pass: process.env.GOOGLE_MAIL_PASS,
+        pass: 'xukp mxmp wvqo thlr',
       },
     });
     return transport;
