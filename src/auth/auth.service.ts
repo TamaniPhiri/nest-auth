@@ -18,7 +18,7 @@ export class AuthService {
   async login(loginUserDto: LoginUserDto) {
     const { email, password } = loginUserDto;
     const user = await this.prismaService.user.findFirst({
-      where: { email, password },
+      where: { email },
     });
     if (!user) throw new ConflictException('user dont exists');
     const confirmPass = await compare(password, user.password);
