@@ -1,4 +1,8 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { hash, compare } from 'bcrypt';
@@ -18,7 +22,7 @@ export class AuthService {
     });
     if (!user) throw new ConflictException('user dont exists');
     const confirmPass = await compare(password, user.password);
-    if (!confirmPass) throw new ConflictException('Invalid Password');
+    if (!confirmPass) throw new UnauthorizedException('Invalid Password');
   }
 
   async register(createUserDto: Prisma.UserCreateInput) {
