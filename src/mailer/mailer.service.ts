@@ -1,4 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import * as nodemailer from 'nodemailer';
 
 @Injectable()
-export class MailerService {}
+export class MailerService {
+  private async transporter() {
+    const transport = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: true,
+      auth: {
+        
+      },
+    });
+  }
+}
