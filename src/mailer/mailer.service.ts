@@ -6,8 +6,7 @@ export class MailerService {
   private async transporter() {
     const transport = nodemailer.createTransport({
       host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
+      secure: true,
       auth: {
         user: 'tamanigabriel0@gmail.com',
         pass: 'xukp mxmp wvqo thlr',
@@ -23,5 +22,6 @@ export class MailerService {
       subject: 'Registration successful',
       html: `Confirmation my brother, it's working`,
     });
+    console.log('Email sent');
   }
 }
