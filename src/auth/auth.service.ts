@@ -2,6 +2,7 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { LoginUserDto } from './dto/loginDto';
+import { compare, hash } from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -11,6 +12,7 @@ export class AuthService {
       where: { email },
     });
     if (user) throw new ConflictException('user already exists');
+
   }
   constructor(private readonly prismaService: PrismaService) {}
   register(createUserDto: Prisma.UserCreateInput) {
