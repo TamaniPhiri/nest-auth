@@ -7,7 +7,7 @@ export class MailerService {
     const transport = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 587,
-      secure: true,
+      secure: false,
       auth: {
         user: 'tamanigabriel0@gmail.com',
         pass: 'xukp mxmp wvqo thlr',
