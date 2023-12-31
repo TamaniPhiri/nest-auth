@@ -3,10 +3,14 @@ import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 // import { LoginUserDto } from './dto/loginDto';
 import { hash } from 'bcrypt';
+import { MailerService } from 'src/mailer/mailer.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly emailService: MailerService,
+  ) {}
   //   async login(loginUserDto: LoginUserDto) {
   //     const { email, password } = loginUserDto;
   //     const user = await this.prismaService.user.findFirst({
@@ -21,6 +25,7 @@ export class AuthService {
     const user = await this.prismaService.user.findFirst({ where: { email } });
     if (user) throw new ConflictException('User already exists');
     const hashedPass = await hash(password, 10);
+    await this.emailService.sendSignUpConfirmation(email);
     return this.prismaService.user.create({
       data: {
         username,
