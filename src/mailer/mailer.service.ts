@@ -13,5 +13,6 @@ export class MailerService {
         pass: process.env.GOOGLE_MAIL_PASS,
       },
     });
+    return transport;
   }
 }
