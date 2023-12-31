@@ -9,4 +9,9 @@ export class AuthController {
   register(@Body() createUserDto: Prisma.UserCreateInput) {
     return this.authService.register(createUserDto);
   }
+
+  @Post('login')
+  login(@Body() loginUserDto: Prisma.UserFindFirstArgs) {
+    return this.authService.login(loginUserDto);
+  }
 }
