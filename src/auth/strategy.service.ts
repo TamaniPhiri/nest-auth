@@ -23,6 +23,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
     if (!user) throw new UnauthorizedException('Unauthorized');
     console.log(user);
+    Reflect.deleteProperty(user, 'password');
     return user;
   }
 }
