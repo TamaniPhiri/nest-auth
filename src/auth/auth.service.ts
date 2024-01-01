@@ -65,6 +65,7 @@ export class AuthService {
       secret: process.env.OTP_SECRET,
       digits: 5,
       step: 60 * 15,
+      encoding: 'base32',
     });
   }
 }
