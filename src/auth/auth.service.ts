@@ -25,6 +25,19 @@ export class AuthService {
     if (!user) throw new ConflictException('user dont exists');
     const confirmPass = await compare(password, user.password);
     if (!confirmPass) throw new UnauthorizedException('Invalid Password');
+    const payload = {
+      sub: user.id,
+      email: user.email,
+    };
+    const token = this.jwtService.sign(payload, {
+      expiresIn: '2h',
+      secret: process.env.JWT_SECRET,
+    });
+    return {
+      username: user.username,
+      email: user.email,
+      token: token,
+    };
   }
 
   async register(createUserDto: Prisma.UserCreateInput) {
