@@ -10,7 +10,7 @@ import { MailerService } from 'src/mailer/mailer.service';
 import { LoginUserDto } from './dto/loginDto';
 import { JwtService } from '@nestjs/jwt';
 import { ResetPasswordDto } from './dto/resetPasswordDto';
-import speakeasy from 'speakeasy';
+import * as speakeasy from 'speakeasy';
 
 @Injectable()
 export class AuthService {
