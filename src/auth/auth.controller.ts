@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import { Body, Controller, Delete, HttpCode, Post } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from './dto/loginDto';
@@ -29,5 +29,10 @@ export class AuthController {
   @HttpCode(200)
   updatePassword(@Body() updatePasswordDto: UpdatePasswordDto) {
     return this.authService.updatePassword(updatePasswordDto);
+  }
+
+  @Delete('delete')
+  deleteUser() {
+    return 'User deleted';
   }
 }
