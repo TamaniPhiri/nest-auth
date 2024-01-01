@@ -4,6 +4,7 @@ import {
   Delete,
   HttpCode,
   Post,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
@@ -12,6 +13,7 @@ import { LoginUserDto } from './dto/loginDto';
 import { ResetPasswordDto } from './dto/resetPasswordDto';
 import { UpdatePasswordDto } from './dto/updatePasswordDto';
 import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -41,7 +43,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard('jwt'))
   @Delete('delete')
-  deleteUser() {
-    return 'User deleted';
+  deleteUser(@Req() request: Request) {
+    return request.user;
   }
 }
