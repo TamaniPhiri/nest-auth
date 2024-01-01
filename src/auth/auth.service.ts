@@ -68,5 +68,6 @@ export class AuthService {
       encoding: 'base32',
     });
     const url = 'http://localhost:3000/auth/reset-password-confirmation';
+    await this.emailService.sentResetOtp(user.email, url, otp);
   }
 }
