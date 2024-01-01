@@ -3,6 +3,7 @@ import { Prisma } from '@prisma/client';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from './dto/loginDto';
 import { ResetPasswordDto } from './dto/resetPasswordDto';
+import { UpdatePasswordDto } from './dto/updatePasswordDto';
 
 @Controller('auth')
 export class AuthController {
@@ -23,7 +24,7 @@ export class AuthController {
   }
 
   @Post('new-password')
-  updatePassword(@Body() updatePasswordDto: Prisma.UserUpdateInput) {
+  updatePassword(@Body() updatePasswordDto: UpdatePasswordDto) {
     return this.authService.updatePassword(updatePasswordDto);
   }
 }
