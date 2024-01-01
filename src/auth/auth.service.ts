@@ -86,5 +86,6 @@ export class AuthService {
       step: 60 * 15,
       encoding: 'base32',
     });
+    if (!confirm) throw new UnauthorizedException('Invalid/ expired OTP');
   }
 }
