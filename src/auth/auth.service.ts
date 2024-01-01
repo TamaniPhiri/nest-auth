@@ -78,7 +78,7 @@ export class AuthService {
     const url = 'http://localhost:3000/auth/reset-password-confirmation';
     await this.emailService.sentResetOtp(user.email, url, otp);
     return {
-      message: 'Password reset link sent to mail',
+      message: 'Password reset link sent',
     };
   }
 
