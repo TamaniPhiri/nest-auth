@@ -10,7 +10,7 @@ import { MailerService } from 'src/mailer/mailer.service';
 import { LoginUserDto } from './dto/loginDto';
 import { JwtService } from '@nestjs/jwt';
 import { ResetPasswordDto } from './dto/resetPasswordDto';
-import { totp } from 'speakeasy';
+import speakeasy from 'speakeasy';
 
 @Injectable()
 export class AuthService {
@@ -61,7 +61,7 @@ export class AuthService {
     const { email } = resetPasswordDto;
     const user = await this.prismaService.user.findFirst({ where: { email } });
     if (!user) throw new ConflictException('user dont exists');
-    const otp = totp({
+    const otp = speakeasy.totp({
       secret: process.env.OTP_SECRET,
       digits: 5,
       step: 60 * 15,
