@@ -22,6 +22,5 @@ export class MailerService {
       subject: 'Registration successful',
       html: `Confirmation my brother, it's working`,
     });
-    console.log('Email sent');
   }
 }
