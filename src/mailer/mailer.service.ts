@@ -29,7 +29,7 @@ export class MailerService {
       from: 'authserver@mail.com',
       to: email,
       subject: 'Reset Password',
-      html: `Confirmation my brother, it's working`,
+      html: `Reset your password here ${url}, your OTP=${otp}`,
     });
   }
 }
