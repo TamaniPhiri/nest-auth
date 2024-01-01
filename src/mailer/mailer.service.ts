@@ -15,12 +15,12 @@ export class MailerService {
     return transport;
   }
 
-  async sendSignUpConfirmation(email: string) {
+  async sendSignUpConfirmation(email: string, name: string) {
     (await this.transporter()).sendMail({
       from: 'authserver@mail.com',
       to: email,
       subject: 'Registration successful',
-      html: `Thanks for signing up yo 😃`,
+      html: `Thanks for signing up ${name} 😃`,
     });
   }
 
