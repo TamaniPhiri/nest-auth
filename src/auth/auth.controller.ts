@@ -2,6 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from './dto/loginDto';
+import { ResetPasswordDto } from './dto/resetPasswordDto';
 
 @Controller('auth')
 export class AuthController {
@@ -14,5 +15,10 @@ export class AuthController {
   @Post('login')
   login(@Body() loginUserDto: LoginUserDto) {
     return this.authService.login(loginUserDto);
+  }
+
+  @Post('reset-password')
+  resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
+    return this.authService.resetPassword(resetPasswordDto);
   }
 }
