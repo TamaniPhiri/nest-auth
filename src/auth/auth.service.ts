@@ -50,7 +50,7 @@ export class AuthService {
     const user = await this.prismaService.user.findFirst({ where: { email } });
     if (user) throw new ConflictException('User already exists');
     const hashedPass = await hash(password, 10);
-    await this.emailService.sendSignUpConfirmation(email);
+    await this.emailService.sendSignUpConfirmation(email, username);
     return this.prismaService.user.create({
       data: {
         username,
