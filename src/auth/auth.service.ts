@@ -96,8 +96,4 @@ export class AuthService {
       message: 'Password updated successfully',
     };
   }
-
-  deleteUser(userId: number) {
-    throw new Error('Method not implemented.');
-  }
 }
