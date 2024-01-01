@@ -44,7 +44,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard('jwt'))
   @Delete('delete')
-  deleteUser(@Req() request: Request, @Body deleteUserDto: DeleteUserDto) {
+  deleteUser(@Req() request: Request, @Body() deleteUserDto: DeleteUserDto) {
     const userId = request.user['id'];
     return this.authService.deleteUser(userId, deleteUserDto.password);
   }
