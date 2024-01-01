@@ -2,7 +2,11 @@
   "name": "auth-starter",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": {
+    "name": "Tamani Phiri",
+    "email": "tamanigabriel0@gmail.com",
+    "url": "https://next-tamani.vercel.app/home"
+  },
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
