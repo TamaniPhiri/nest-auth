@@ -67,5 +67,6 @@ export class AuthService {
       step: 60 * 15,
       encoding: 'base32',
     });
+    const url = 'http://localhost:3000/auth/reset-password-confirmation';
   }
 }
