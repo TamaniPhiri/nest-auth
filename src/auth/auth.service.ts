@@ -61,7 +61,7 @@ export class AuthService {
     const { email } = resetPasswordDto;
     const user = await this.prismaService.user.findFirst({ where: { email } });
     if (!user) throw new ConflictException('user dont exists');
-    totp({
+    const otp = totp({
       secret: process.env.OTP_SECRET,
       digits: 5,
       step: 60 * 15,
