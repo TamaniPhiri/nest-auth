@@ -23,4 +23,13 @@ export class MailerService {
       html: `Confirmation my brother, it's working`,
     });
   }
+
+  async sentResetOtp(email: string) {
+    (await this.transporter()).sendMail({
+      from: 'authserver@mail.com',
+      to: email,
+      subject: 'Registration successful',
+      html: `Confirmation my brother, it's working`,
+    });
+  }
 }
