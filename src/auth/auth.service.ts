@@ -104,6 +104,11 @@ export class AuthService {
       where: { id: userId },
     });
     if (!user) throw new NotFoundException('user dont exists');
+    const matchPass = await compare(deleteUserDto.password, user.password);
+    if (!matchPass) throw new UnauthorizedException('Invalid password');
     await this.prismaService.user.delete({ where: { id: user.id } });
+    return {
+      message: 'User deleted successfully',
+    };
   }
 }
