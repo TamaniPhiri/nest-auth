@@ -20,7 +20,7 @@ export class MailerService {
       from: 'authserver@mail.com',
       to: email,
       subject: 'Registration successful',
-      html: `Confirmation my brother, it's working`,
+      html: `Thanks for signing up yo 😃`,
     });
   }
 
