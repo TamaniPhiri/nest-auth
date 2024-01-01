@@ -75,7 +75,9 @@ export class AuthService {
     };
   }
 
-  updatePassword(updatePasswordDto: UpdatePasswordDto) {
+  async updatePassword(updatePasswordDto: UpdatePasswordDto) {
     const { email, password, otp } = updatePasswordDto;
+    const user = await this.prismaService.user.findFirst({ where: { email } });
+    if (!user) throw new ConflictException('user dont exists');
   }
 }
