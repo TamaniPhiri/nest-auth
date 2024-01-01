@@ -1,9 +1,17 @@
-import { Body, Controller, Delete, HttpCode, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  HttpCode,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from './dto/loginDto';
 import { ResetPasswordDto } from './dto/resetPasswordDto';
 import { UpdatePasswordDto } from './dto/updatePasswordDto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -31,6 +39,7 @@ export class AuthController {
     return this.authService.updatePassword(updatePasswordDto);
   }
 
+  @UseGuards(AuthGuard)
   @Delete('delete')
   deleteUser() {
     return 'User deleted';
