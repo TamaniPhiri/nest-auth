@@ -22,8 +22,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       where: { email: payload.email },
     });
     if (!user) throw new UnauthorizedException('Unauthorized');
-    console.log(user);
     Reflect.deleteProperty(user, 'password');
+    console.log(user);
     return user;
   }
 }
