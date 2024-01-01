@@ -64,7 +64,7 @@ export class AuthService {
     totp({
       secret: process.env.OTP_SECRET,
       digits: 5,
-      step: 1,
+      step: 60 * 15,
     });
   }
 }
