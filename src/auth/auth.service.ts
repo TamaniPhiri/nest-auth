@@ -11,6 +11,7 @@ import { LoginUserDto } from './dto/loginDto';
 import { JwtService } from '@nestjs/jwt';
 import { ResetPasswordDto } from './dto/resetPasswordDto';
 import * as speakeasy from 'speakeasy';
+import { UpdatePasswordDto } from './dto/updatePasswordDto';
 
 @Injectable()
 export class AuthService {
@@ -72,5 +73,9 @@ export class AuthService {
     return {
       message: 'Password reset link sent to mail',
     };
+  }
+
+  updatePassword(updatePasswordDto: UpdatePasswordDto) {
+    const { email, password, otp } = updatePasswordDto;
   }
 }
