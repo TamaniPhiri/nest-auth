@@ -79,5 +79,12 @@ export class AuthService {
     const { email, password, otp } = updatePasswordDto;
     const user = await this.prismaService.user.findFirst({ where: { email } });
     if (!user) throw new ConflictException('user dont exists');
+    const confirm = speakeasy.totp.verify({
+      secret: process.env.OTP_SECRET,
+      token: otp,
+      digits: 5,
+      step: 60 * 15,
+      encoding: 'base32',
+    });
   }
 }
