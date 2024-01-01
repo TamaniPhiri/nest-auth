@@ -87,5 +87,13 @@ export class AuthService {
       encoding: 'base32',
     });
     if (!confirm) throw new UnauthorizedException('Invalid/ expired OTP');
+    const hashedPass = await hash(password, 10);
+    await this.prismaService.user.update({
+      where: { id: user.id },
+      data: { password: hashedPass },
+    });
+    return {
+      message: 'Password updated successfully',
+    };
   }
 }
