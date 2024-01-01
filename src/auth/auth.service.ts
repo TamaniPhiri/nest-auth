@@ -9,6 +9,7 @@ import { hash, compare } from 'bcrypt';
 import { MailerService } from 'src/mailer/mailer.service';
 import { LoginUserDto } from './dto/loginDto';
 import { JwtService } from '@nestjs/jwt';
+import { ResetPasswordDto } from './dto/resetPasswordDto';
 
 @Injectable()
 export class AuthService {
@@ -53,5 +54,11 @@ export class AuthService {
         password: hashedPass,
       },
     });
+  }
+
+  async resetPassword(resetPasswordDto: ResetPasswordDto) {
+    const { email } = resetPasswordDto;
+    const user = await this.prismaService.user.findFirst({ where: { email } });
+    if (!user) throw new ConflictException('user dont exists');
   }
 }
