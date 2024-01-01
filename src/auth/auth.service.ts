@@ -4,7 +4,6 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { hash, compare } from 'bcrypt';
 import { MailerService } from 'src/mailer/mailer.service';
@@ -14,6 +13,7 @@ import { ResetPasswordDto } from './dto/resetPasswordDto';
 import * as speakeasy from 'speakeasy';
 import { UpdatePasswordDto } from './dto/updatePasswordDto';
 import { DeleteUserDto } from './dto/deleteUserDto';
+import { RegisterDto } from './dto/registerDto';
 
 @Injectable()
 export class AuthService {
@@ -45,7 +45,7 @@ export class AuthService {
     };
   }
 
-  async register(createUserDto: Prisma.UserCreateInput) {
+  async register(createUserDto: RegisterDto) {
     const { email, password, username } = createUserDto;
     const user = await this.prismaService.user.findFirst({ where: { email } });
     if (user) throw new ConflictException('User already exists');
