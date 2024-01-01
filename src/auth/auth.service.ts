@@ -1,6 +1,7 @@
 import {
   ConflictException,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
@@ -12,6 +13,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ResetPasswordDto } from './dto/resetPasswordDto';
 import * as speakeasy from 'speakeasy';
 import { UpdatePasswordDto } from './dto/updatePasswordDto';
+import { DeleteUserDto } from './dto/deleteUserDto';
 
 @Injectable()
 export class AuthService {
@@ -95,5 +97,13 @@ export class AuthService {
     return {
       message: 'Password updated successfully',
     };
+  }
+
+  async deleteUser(userId: number, deleteUserDto: DeleteUserDto) {
+    const user = await this.prismaService.user.findFirst({
+      where: { id: userId },
+    });
+    if (!user) throw new NotFoundException('user dont exists');
+    await this.prismaService.user.delete({ where: { id: user.id } });
   }
 }
