@@ -29,7 +29,8 @@ export class MailerService {
       from: 'authserver@mail.com',
       to: email,
       subject: 'Reset Password',
-      html: `Reset your password here ${url}, your OTP=${otp}`,
+      html: `<a href="${url}">Reset your password</a>
+        <p>OTP <strong>${otp}</strong></p>`,
     });
   }
 }
