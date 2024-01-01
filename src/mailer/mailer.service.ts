@@ -8,8 +8,8 @@ export class MailerService {
       host: 'smtp.gmail.com',
       secure: true,
       auth: {
-        user: 'tamanigabriel0@gmail.com',
-        pass: 'xukp mxmp wvqo thlr',
+        user: process.env.GOOGLE_MAIL_USER,
+        pass: process.env.GOOGLE_MAIL_PASS,
       },
     });
     return transport;
