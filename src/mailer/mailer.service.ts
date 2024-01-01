@@ -24,11 +24,11 @@ export class MailerService {
     });
   }
 
-  async sentResetOtp(email: string) {
+  async sentResetOtp(email: string, url: string, otp: string) {
     (await this.transporter()).sendMail({
       from: 'authserver@mail.com',
       to: email,
-      subject: 'Registration successful',
+      subject: 'Reset Password',
       html: `Confirmation my brother, it's working`,
     });
   }
