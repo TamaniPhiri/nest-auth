@@ -39,7 +39,7 @@ export class AuthController {
     return this.authService.updatePassword(updatePasswordDto);
   }
 
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard('jwt'))
   @Delete('delete')
   deleteUser() {
     return 'User deleted';
