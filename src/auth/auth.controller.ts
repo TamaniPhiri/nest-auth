@@ -21,4 +21,9 @@ export class AuthController {
   resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
     return this.authService.resetPassword(resetPasswordDto);
   }
+
+  @Post('new-password')
+  updatePassword(@Body() updatePasswordDto: Prisma.UserUpdateInput) {
+    return this.authService.updatePassword(updatePasswordDto);
+  }
 }
