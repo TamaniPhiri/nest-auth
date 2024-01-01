@@ -46,6 +46,6 @@ export class AuthController {
   @Delete('delete')
   deleteUser(@Req() request: Request, @Body() deleteUserDto: DeleteUserDto) {
     const userId = request.user['id'];
-    return this.authService.deleteUser(userId, deleteUserDto.password);
+    return this.authService.deleteUser(userId, deleteUserDto);
   }
 }
