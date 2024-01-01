@@ -30,7 +30,8 @@ export class MailerService {
       to: email,
       subject: 'Reset Password',
       html: `<a href="${url}">Reset your password</a>
-        <p>OTP <strong>${otp}</strong></p>`,
+        <p>OTP <strong>${otp}</strong></p>
+        <p>Code will expire in 15 minutes</p>`,
     });
   }
 }
