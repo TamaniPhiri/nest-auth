@@ -20,11 +20,13 @@ export class AuthController {
   }
 
   @Post('reset-password')
+  @HttpCode(200)
   resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
     return this.authService.resetPassword(resetPasswordDto);
   }
 
   @Post('new-password')
+  @HttpCode(200)
   updatePassword(@Body() updatePasswordDto: UpdatePasswordDto) {
     return this.authService.updatePassword(updatePasswordDto);
   }
